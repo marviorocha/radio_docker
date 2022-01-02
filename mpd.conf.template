@@ -1,0 +1,25 @@
+music_directory    "/var/lib/mpd/music"
+playlist_directory "/var/lib/mpd/playlists"
+db_file            "/var/lib/mpd/database"
+log_file           "/var/log/mpd/mpd.log"
+pid_file           "/var/run/mpd.pid"
+sticker_file       "/var/lib/mpd/sticker.sql"
+
+bind_to_address "127.0.0.1"
+port "6600"
+
+zeroconf_enabled "no"
+
+audio_output {
+        type            "shout"
+        encoding        "opus"
+        name            "StationPro"
+        host            "icecast"
+        port            "8000"
+        mount           "mpd.opus"
+        password        "ICECAST_SOURCE_PASSWORD"
+        bitrate         "64000"
+        format          "48000:16:2"
+        protocol        "icecast2"
+        user            "source"
+}
