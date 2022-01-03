@@ -1,5 +1,11 @@
 #!/usr/bin/liquidsoap
 
+ log.file.set(false)
+ log.stdout.set(true)
+ log.level.set(4)
+
+ settings.request.metadata_decoders.set(["FFMPEG", "FLAC", "MP4", "OGG", "TAGLIB", "ID3V2", "GSTREAMER"])
+
 # Allow root for official docker image
 set("init.allow_root", true)
 
@@ -14,15 +20,31 @@ if getenv("STREAM_MOUNTPOINT") == "" then
     setenv("STREAM_MOUNTPOINT", "live")
 end
 
+# Playlist mode
+
+
+
 # Random music
-random_music = normalize(
+# random_music = normalize(
+#     playlist(
+#         id="playlist",
+#         mode="pls_mode",
+#         reload_mode="watch",
+#         mime_type="audio/x-mpegurl",
+#         "/music"
+#     )
+# )
+
+radio_playlist = normalize(
     playlist(
-        id="playlist",
-        mode="random",
-        reload=600,
-        "/music"
+        id='playlist',
+        mode="normal",
+        reload_mode='watch',
+        mime_type="audio/x-mpegurl",
+        "/music/playlists/radio.m3u"
     )
 )
+
 
 # Silence 
 silence = blank(id="blank")
@@ -30,7 +52,7 @@ silence = blank(id="blank")
 # Fallback to Silence if Playlist dies for some reason
 radio = fallback(
     track_sensitive=false,
-    [ random_music, silence ]
+    [ radio_playlist, silence ]
 )
 
 # Stream name
@@ -42,7 +64,7 @@ output.icecast(
     name = getenv("STREAM_NAME"),
     description = getenv("STREAM_DESC"),
     url = getenv("STREAM_URL"),
-    mount = "radio_high.mp3",
+    mount = "station-hight.mp3",
     password = getenv("ICECAST_SOURCE_PASSWORD"),
     host = "icecast",
     port = 8000,
