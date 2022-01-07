@@ -22,6 +22,10 @@ end
 
 # Playlist mode
 
+# A fallback switch
+
+req = say_metadata(request.queue())
+
 
 
 # Random music
@@ -35,30 +39,83 @@ end
 #     )
 # )
 
-radio_playlist = normalize(
+default = normalize(
     playlist(
         id='playlist',
-        mode="normal",
+        mode="pls_mode",
         reload_mode='watch',
         mime_type="audio/x-mpegurl",
-        "/music/playlists/radio.m3u"
+        "/music/playlists/Default/play.m3u"
     )
 )
 
+Morning = playlist(reload=3600,
+        id='playlist',
+        mode="pls_mode",
+        reload_mode='watch',
+        mime_type="audio/x-mpegurl",
+"/music/playlists/Morning/play.m3u")
 
+
+Evening = playlist(reload=3600,
+        id='playlist',
+        mode="pls_mode",
+        reload_mode='watch',
+        mime_type="audio/x-mpegurl",
+"/music/playlists/Evening/play.m3u")
+
+
+Earlymorning = playlist(reload=3600, 
+        id='playlist',
+        mode="pls_mode",
+        reload_mode='watch',
+        mime_type="audio/x-mpegurl",
+"/music/playlists/Earlymorning/play.m3u")
+
+
+Night = playlist(reload=3600, 
+       id='playlist',
+        mode="pls_mode",
+        reload_mode='watch',
+        mime_type="audio/x-mpegurl",
+"/music/playlists/Night/play.m3u")
+
+
+
+radio = switch([({8h-13h}, Morning), ({21h-22h}, Evening), ({18h-0h}, Night), ({0h-6h}, Earlymorning) ])
+radio = crossfade(fade_out=3., fade_in=3., duration=5., radio)
+
+jingles = playlist(reload=3600,
+        id='playlist',
+        mode="rounds",     
+        mime_type="audio/x-mpegurl",
+        "/music/playlists/Jungles/play.m3u")
+
+radio = rotate(weights=[1, 1], [jingles, radio])
+radio = nrj(normalize(radio))
 # Silence 
 silence = blank(id="blank")
 
 # Fallback to Silence if Playlist dies for some reason
-radio = fallback(
-    track_sensitive=false,
-    [ radio_playlist, silence ]
-)
+radio = fallback(track_sensitive=false, [ radio, silence ])
+    
+    
+
+
+
+
+# A scheduler,
+# assuming you have defined the night and day sources
+
+
 
 # Stream name
 stream_mountpoint = getenv("stream_mountpoint")
 
 # Output
+
+
+
 output.icecast(
     %mp3.vbr(quality=1, id3v2=true),
     name = getenv("STREAM_NAME"),

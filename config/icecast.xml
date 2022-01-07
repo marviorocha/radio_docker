@@ -2,8 +2,8 @@
     <!-- location and admin are two arbitrary strings that are e.g. visible
          on the server info page of the icecast web interface
          (server_version.xsl). -->
-    <location>Brazil</location>
-    <admin>stationpro@stationpro.co</admin>
+    <location>USA</location>
+    <admin>testing@testing.com</admin>
 
     <!-- IMPORTANT!
          Especially for inexperienced users:
@@ -14,7 +14,7 @@
 
     <limits>
         <clients>100</clients>
-        <sources>3</sources>
+        <sources>50</sources>
         <queue-size>524288</queue-size>
         <client-timeout>30</client-timeout>
         <header-timeout>15</header-timeout>
