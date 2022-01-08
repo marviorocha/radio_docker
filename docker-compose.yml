@@ -5,40 +5,24 @@ services:
     container_name: "radio_icecast"
     ports:
       - "${ICECAST_PORT:-8000}:8000"
-    volumes:
-      - "./config/icecast.xml:/etc/icecast.xml"
     environment:
       - ICECAST_SOURCE_PASSWORD=admin123
       - ICECAST_ADMIN_PASSWORD=admin123
       - ICECAST_RELAY_PASSWORD=admin=123
-      - ICECAST_MAX_SOURCES
+      - ICECAST_MAX_SOURCES=50
       - ICECAST_ADMIN_EMAIL=testing@testing.com
       - ICECAST_LOCATION=USA
-      - ICECAST_HOSTNAME=icecast
+      - ICECAST_HOSTNAME=dev.marvio.co
     restart: unless-stopped
-  # mpd:
-  #   image: vimagick/mpd
-  #   container_name: "radio_mpd"
-  #   depends_on: [icecast]
-  #   command: >
-  #       sh -c "sed 's/ICECAST_SOURCE_PASSWORD/${ICECAST_SOURCE_PASSWORD:-hackme}/g' /etc/mpd.conf.template > /etc/mpd.conf
-  #       && mpd --stdout --no-daemon"
-  #   ports:
-  #     - "6601:6600"
-  #   volumes:
-  #     - "./mpd.conf.template:/etc/mpd.conf.template:ro"
-  #     - "${MPD_DB}:/var/lib/mpd/database:ro"
-  #     - "${MUSIC_DIR}:/var/lib/mpd/music:ro"
-  #     - "${PLAYLISTS_DIR}:/var/lib/mpd/playlists:ro"
-  #   restart: unless-stopped
+
   liquidsoap:
     image: "savonet/liquidsoap:v2.0.2"
     container_name: "radio_liquidsoap"
     depends_on: [icecast]
-    command: "liquidsoap /script.liq"
+    command: "liquidsoap /radio_system.liq"
     volumes:
       - "./music:/music:ro"
-      - "./config/script.liq:/script.liq:ro"
+      - "./config/radio_system.liq:/radio_system.liq:ro"
     environment:
       - ICECAST_SOURCE_PASSWORD=admin123
       - STREAM_NAME=Station

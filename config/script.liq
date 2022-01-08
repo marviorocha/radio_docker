@@ -77,80 +77,27 @@ Night = playlist(reload=3600,
        id='playlist',
         mode="pls_mode",
         reload_mode='watch',
-        mime_type="audio/x-mpegurl",
-"/music/playlists/Night/play.m3u")
+        mime_type="audio/music" ) )
+s = skip_blank(length=7.,randomloop)
 
+s = rewrite_metadata([("title","$(title)"),
+                      ("comment","")],s)
 
+#promo = playlist.safe("/home/audio/promo", mode="random")
+#radio = random( weights = [1,4], [ delay(700.,promo), randomloop ])
+#output.alsa(id="audioloop",bufferize=true,device="hw:1", radio)
 
-radio = switch([({8h-13h}, Morning), ({21h-22h}, Evening), ({18h-0h}, Night), ({0h-6h}, Earlymorning) ])
-radio = crossfade(fade_out=3., fade_in=3., duration=5., radio)
+s = audio_process(s)
 
-jingles = playlist(reload=3600,
-        id='playlist',
-        mode="rounds",     
-        mime_type="audio/x-mpegurl",
-        "/music/playlists/Jungles/play.m3u")
-
-radio = rotate(weights=[1, 1], [jingles, radio])
-radio = nrj(normalize(radio))
-# Silence 
-silence = blank(id="blank")
-
-# Fallback to Silence if Playlist dies for some reason
-radio = fallback(track_sensitive=false, [ radio, silence ])
-    
-    
-
-
-
-
-# A scheduler,
-# assuming you have defined the night and day sources
-
-
-
-# Stream name
-stream_mountpoint = getenv("stream_mountpoint")
-
-# Output
-
-
-
-output.icecast(
-    %mp3.vbr(quality=1, id3v2=true),
-    name = getenv("STREAM_NAME"),
-    description = getenv("STREAM_DESC"),
-    url = getenv("STREAM_URL"),
-    mount = "station-hight.mp3",
-    password = getenv("ICECAST_SOURCE_PASSWORD"),
-    host = "icecast",
-    port = 8000,
-    encoding = "UTF-8",
-    radio
-)
-
-output.icecast(
-    %mp3.vbr(quality=5, id3v2=true),
-    name = getenv("STREAM_NAME"),
-    description = getenv("STREAM_DESC"),
-    url = getenv("STREAM_URL"),
-    mount = "radio_medium.mp3",
-    password = getenv("ICECAST_SOURCE_PASSWORD"),
-    host = "icecast",
-    port = 8000,
-    encoding = "UTF-8",
-    radio
-)
-
-output.icecast(
-    %mp3.vbr(quality=8, id3v2=true),
-    name = getenv("STREAM_NAME"),
-    description = getenv("STREAM_DESC"),
-    url = getenv("STREAM_URL"),
-    mount = "radio_low.mp3",
-    password = getenv("ICECAST_SOURCE_PASSWORD"),
-    host = "icecast",
-    port = 8000,
-    encoding = "UTF-8",
-    radio
+output.icecast(%vorbis(quality=0.9, samplerate=44100, channels=2), 
+	host="icecast",
+	port=8000,
+	mount='radio.ogg',
+	genre='Radio',
+#	restart="true",
+	password="admin123",
+	url="http://localhost",
+	description="Radio",
+	timeout=1200.,
+	s	
 )
