@@ -39,22 +39,19 @@ req = say_metadata(request.queue())
 #     )
 # )
 
-default = normalize(
-    playlist(
+Default = playlist(reload=3600,
         id='playlist',
         mode="pls_mode",
         reload_mode='watch',
         mime_type="audio/x-mpegurl",
-        "/music/playlists/Default/play.m3u"
-    )
-)
+        "/music/playlists/Default/play.m3u")
 
 Morning = playlist(reload=3600,
         id='playlist',
         mode="pls_mode",
         reload_mode='watch',
         mime_type="audio/x-mpegurl",
-"/music/playlists/Morning/play.m3u")
+        "/music/playlists/Morning/play.m3u")
 
 
 Evening = playlist(reload=3600,
@@ -62,7 +59,7 @@ Evening = playlist(reload=3600,
         mode="pls_mode",
         reload_mode='watch',
         mime_type="audio/x-mpegurl",
-"/music/playlists/Evening/play.m3u")
+        "/music/playlists/Evening/play.m3u")
 
 
 Earlymorning = playlist(reload=3600, 
@@ -70,7 +67,7 @@ Earlymorning = playlist(reload=3600,
         mode="pls_mode",
         reload_mode='watch',
         mime_type="audio/x-mpegurl",
-"/music/playlists/Earlymorning/play.m3u")
+        "/music/playlists/Earlymorning/play.m3u")
 
 
 Night = playlist(reload=3600, 
@@ -78,7 +75,7 @@ Night = playlist(reload=3600,
         mode="pls_mode",
         reload_mode='watch',
         mime_type="audio/x-mpegurl",
-"/music/playlists/Night/play.m3u")
+        "/music/playlists/Night/play.m3u")
 
 # Silence 
 
@@ -86,48 +83,42 @@ silence = blank(id="blank")
 
 
 jingles = rotate([
- playlist(reload=3600,
-        id='playlist',
-        mode="random",
-        reload_mode='watch',   
+ playlist(reload=1,
+        id='jingle',
+        mode="pls_mode",
+        reload_mode='rounds',   
         mime_type="audio/x-mpegurl",
         "/music/playlists/Jingles/play.m3u")
 ])
 
+# A scheduler,
+# assuming you have defined the night and day sources
+
 radio = switch([
-    ({8h-13h}, Morning),
-    ({0h-17h}, Evening),
-    ({18h-0h}, Night),
-    ({0h-6h}, Evening),
-    
+    ({6h-13h}, Morning),
+    ({12h-17h}, Evening),
+    ({18h-23h}, Night),
+    ({0h-6h}, Earlymorning),
+    ({0m0s}, Default)
     ]) 
 
 # Effect
 
-radio = crossfade(fade_out=3., fade_in=3., duration=5., radio)
-radio = nrj(normalize(radio))
-radio = rotate(weights = [1, 1],[ jingles, radio ])
+# Stream name
+
+radio = rotate(weights = [1, 5],[ jingles, radio ])
 radio = add([radio, switch([({0m0s},jingles)])]) 
-radio = fallback(track_sensitive=false, [ radio, jingles, silence])
+radio = nrj(normalize(radio))
+radio = crossfade(fade_out=3., fade_in=3., duration=5., radio)
+radio = fallback(track_sensitive=false, [ radio, silence])
 
 
 # Fallback to Silence if Playlist dies for some reason
-    
-    
 
-
-
-
-# A scheduler,
-# assuming you have defined the night and day sources
-
-
-
-# Stream name
 stream_mountpoint = getenv("stream_mountpoint")
+    
 
 # Output
-
 
 
 output.icecast(

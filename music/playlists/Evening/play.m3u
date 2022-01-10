@@ -1,11 +1,51 @@
 #EXTM3U
-#EXTINF:6,Song one
-http://wmwm.freehostia.com/Jingles/ID0007.mp3
-#EXTINF:7, Sone Two
-https://www.sinj.com/sounds/mp3s/Rock/Guns%20N%20Roses/Guns%20N%20Roses%20-%20Night%20Train.mp3
-#EXTINF:8, Song Tree
-http://wmwm.freehostia.com/Jingles/ID0029.mp3
-#EXTINF:9, Te Levar
-https://redemption-church.com/worship/Songs/Above%20All/Above%20All%20(Lenny%20LeBlanc).mp3
-#EXTINF:10, Cai a noite
-http://wmwm.freehostia.com/Jingles/J00000037.mp3
+#EXTINF:1,Song one
+http://www.uvm.edu/~tgcleary/original%20jazz%20tunes/Birdhouse%20(Live).mp3
+#EXTINF:2, Song Tree
+http://www.uvm.edu/~tgcleary/original%20jazz%20tunes/Everybody'sInsideBlues%20(quartet).mp3
+#EXTINF:3, Passarinho, que som é esse - Contrabaixo.mp3
+http://www.uvm.edu/~tgcleary/original%20jazz%20tunes/Terry%20Town%20Line%20(solo).mp3
+#EXTINF:4, Cai a noite
+http://www.uvm.edu/~tgcleary/original%20jazz%20tunes/You%20%20Are%20Here%20(quartet).mp3
+#EXTINF:6, Carrosseu
+http://www.uvm.edu/~tgcleary/original%20jazz%20tunes/sweet%20sarah%20blue.mp3
+#EXTINF:7,
+http://www.uvm.edu/~tgcleary/original%20jazz%20tunes/Train%20Dance%20_%20Drain%20Trance.mp3
+#EXTINF:8,
+http://www.uvm.edu/~tgcleary/original%20jazz%20tunes/so%20what%20scale_arpeggio%20outline%20edit.mp3
+#EXTINF:9,
+http://www.uvm.edu/~tgcleary/original%20jazz%20tunes/Birdhouse%202.mp3
+#EXTINF:10,
+http://www.uvm.edu/~tgcleary/original%20jazz%20tunes/01%20Yesterdays_Weathervane%205-1-16.mp3
+#EXTINF:11,
+http://www.uvm.edu/~tgcleary/original%20jazz%20tunes/sweet%20sarah%20blue.mp3
+#EXTINF:12,
+http://peterewendy.com.br/Genero/Mp3/ANOS_DOURADOS/BBC_Big_Band_Orchestra_-_Caravan_-_P&W.mp3
+#EXTINF:13,
+http://peterewendy.com.br/Genero/Mp3/ANOS_DOURADOS/Frank_Sinatra_-_Cheek_To_Cheek_-_P&W.mp3
+#EXTINF:14,
+http://peterewendy.com.br/Genero/Mp3/ANOS_DOURADOS/Glenn_Miller_-_Moonlight_Serenade_-_P&W.mp3
+#EXTINF:15,
+http://peterewendy.com.br/Genero/Mp3/ANOS_DOURADOS/Glenn_Miller_-_In_The_Mood_-_P&W.mp3
+#EXTINF:16,
+http://peterewendy.com.br/Genero/Mp3/ANOS_DOURADOS/Ray_Conniff_-_Cant_Take_My_Eyes_Off_You_-_P&W.mp3
+#EXTINF:17,
+http://peterewendy.com.br/Genero/Mp3/ANOS_DOURADOS/Robbie_Williams_&_Nicole_Kidman_-_Somethin_Stupid_-_P&W.mp3
+#EXTINF:18,
+http://peterewendy.com.br/Genero/Mp3/ANOS_DOURADOS/Tommy_Dorsey_-_Ill_Be_Seeing_You_-_P&W.mp3
+#EXTINF:19,
+http://peterewendy.com.br/Genero/Mp3/ANOS_DOURADOS/Frank_Sinatra_-_My_Way_-_P&W.mp3
+#EXTINF:20,
+http://peterewendy.com.br/Genero/Mp3/BALADA/Alok_-_Symphonia_(feat._Sevenn)_-_P&W.mp3
+#EXTINF:21,
+http://peterewendy.com.br/Genero/Mp3/BALADA/Avicii_-_For_A_Better_Day_-_P&W.mp3
+#EXTINF:22,
+http://peterewendy.com.br/Genero/Mp3/BALADA/Bhaskar_&_Alok_-_Killed_By_The_City_-_P&W.mp3
+#EXTINF:23,
+http://peterewendy.com.br/Genero/Mp3/BALADA/Pitbull_-_Get_Ready_(feat._Blake_Shelton)_-_P&W.mp3
+#EXTINF:24,
+http://peterewendy.com.br/Genero/Mp3/BALADA/Tiesto_-_The_Business_-_P&W.mp3
+#EXTINF:25,
+http://peterewendy.com.br/Genero/Mp3/BALADA/Meduza_-_Paradise_-_P&W.mp3
+
+

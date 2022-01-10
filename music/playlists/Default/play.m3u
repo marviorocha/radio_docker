@@ -1,8 +1,21 @@
 #EXTM3U
-#EXTINF:0,Capital Inicial - Natasha #203
-https://www.igm.mat.br/igmantigo/hp-antigo/2008-1/musicas2/Rock%20e%20Pop/Capital%20-%20Natasha.mp3
-#EXTINF:1, Engenheiros - Promessas
-https://www.igm.mat.br/igmantigo/hp-antigo/2008-1/musicas2/Rock%20e%20Pop/Engenheiros%20-%20A%20Promessa.mp3
-#EXTINF:2, Paralamas - Meu Erro
-https://www.igm.mat.br/igmantigo/hp-antigo/2008-1/musicas2/Rock%20e%20Pop/Paralamas%20-%20Meu%20erro.mp3
-
+#EXTINF:0,
+http://sierrachest.com/gfx/games/Eragon/music/02_SpineMountains_intro.mp3
+#EXTINF:2,
+http://sierrachest.com/gfx/games/Eragon/music/02_SpineMountains_intro.ogg
+#EXTINF:3,
+http://sierrachest.com/gfx/games/Eragon/music/21_GileadKeep_dungeon.mp3
+#EXTINF:4,
+http://sierrachest.com/gfx/games/Eragon/music/07_Carvahall_urgalfight.mp3
+#EXTINF:5,
+http://sierrachest.com/gfx/games/Eragon/music/29_Urgal_reinforcements.mp3
+#EXTINF:6,
+http://sierrachest.com/gfx/games/Eragon/music/29_Urgal_reinforcements.mp3
+#EXTINF:7,
+http://sierrachest.com/gfx/games/Eragon/music/33_Varden_theme.mp3
+#EXTINF:8,
+http://sierrachest.com/gfx/games/Eragon/music/05_Carvahal_intro.ogg
+#EXTINF:9,
+http://sierrachest.com/gfx/games/Eragon/music/05_Carvahal_intro.ogg
+#EXTINF:10,
+http://sierrachest.com/gfx/games/Eragon/music/33_Varden_theme.mp3
