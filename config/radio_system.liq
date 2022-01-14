@@ -14,7 +14,7 @@ if getenv("STREAM_NAME") == "" then
     setenv("STREAM_NAME", "Radio")
 end
 if getenv("STREAM_DESC") == "" then
-    setenv("STREAM_DESC", "Our selection of music")
+    setenv("STREAM_DESC", "Radio Station Pro Music")
 end
 if getenv("STREAM_MOUNTPOINT") == "" then
     setenv("STREAM_MOUNTPOINT", "live")
@@ -126,7 +126,7 @@ output.icecast(
     name = getenv("STREAM_NAME"),
     description = getenv("STREAM_DESC"),
     url = getenv("STREAM_URL"),
-    mount = "station-hight.mp3",
+    mount = getenv("STREAM_MOUNTPOINT"),
     password = getenv("ICECAST_SOURCE_PASSWORD"),
     host = "icecast",
     port = 8000,
@@ -140,7 +140,7 @@ output.icecast(
     name = getenv("STREAM_NAME"),
     description = getenv("STREAM_DESC"),
     url = getenv("STREAM_URL"),
-    mount = "radio_medium.mp3",
+    mount = "station-medium.mp3",
     password = getenv("ICECAST_SOURCE_PASSWORD"),
     host = "icecast",
     port = 8000,
@@ -154,7 +154,7 @@ output.icecast(
     name = getenv("STREAM_NAME"),
     description = getenv("STREAM_DESC"),
     url = getenv("STREAM_URL"),
-    mount = "radio_low.mp3",
+    mount = "station-low.mp3",
     password = getenv("ICECAST_SOURCE_PASSWORD"),
     host = "icecast",
     icy_metadata="true",

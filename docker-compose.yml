@@ -18,9 +18,9 @@ services:
       - "./music:/music:ro"
       - "./config/radio_system.liq:/radio_system.liq:ro"
     environment:
-      - ICECAST_SOURCE_PASSWORD=admin123
-      - STREAM_NAME=Station
-      - STREAM_DESC=New Station Pro web Radio!
-      - STREAM_URL=radio.stationpro.co
-      - STREAM_MOUNTPOINT=autodj
+      - ICECAST_SOURCE_PASSWORD=${ICECAST_SOURCE_PASSWORD}
+      - STREAM_NAME=${STREAM_NAME}
+      - STREAM_DESC=${STREAM_DESC}
+      - STREAM_URL=${STREAM_URL}
+      - STREAM_MOUNTPOINT=${STREAM_MOUNTPOINT}
     restart: unless-stopped
