@@ -5,14 +5,8 @@ services:
     container_name: "radio_icecast"
     ports:
       - "${ICECAST_PORT:-8000}:8000"
-    environment:
-      - ICECAST_SOURCE_PASSWORD=admin123
-      - ICECAST_ADMIN_PASSWORD=admin123
-      - ICECAST_RELAY_PASSWORD=admin=123
-      - ICECAST_MAX_SOURCES=50
-      - ICECAST_ADMIN_EMAIL=testing@testing.com
-      - ICECAST_LOCATION=USA
-      - ICECAST_HOSTNAME=dev.marvio.co
+    env_file:
+      - .env
     restart: unless-stopped
 
   liquidsoap:
