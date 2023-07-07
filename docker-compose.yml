@@ -4,7 +4,9 @@ services:
     image: infiniteproject/icecast
     container_name: "radio_icecast"
     ports:
-      - "${ICECAST_PORT:-8000}:8000"
+      - "${ICECAST_PORT:-8808}:8808"
+    volumes:
+      - ./config/icecast.xml:/etc/icecast.xml
     env_file:
       - .env
     restart: unless-stopped
@@ -23,4 +25,5 @@ services:
       - STREAM_DESC=${STREAM_DESC}
       - STREAM_URL=${STREAM_URL}
       - STREAM_MOUNTPOINT=${STREAM_MOUNTPOINT}
+      - STREAM_PORT=${STREAM_PORT}
     restart: unless-stopped

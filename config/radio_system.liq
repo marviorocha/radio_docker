@@ -62,7 +62,7 @@ Evening = playlist(reload=3600,
         "/music/playlists/Evening/play.m3u")
 
 
-Earlymorning = playlist(reload=3600, 
+Earlymorning = playlist(reload=3600,
         id='playlist',
         mode="pls_mode",
         reload_mode='watch',
@@ -70,14 +70,14 @@ Earlymorning = playlist(reload=3600,
         "/music/playlists/Earlymorning/play.m3u")
 
 
-Night = playlist(reload=3600, 
+Night = playlist(reload=3600,
        id='playlist',
         mode="pls_mode",
         reload_mode='watch',
         mime_type="audio/x-mpegurl",
         "/music/playlists/Night/play.m3u")
 
-# Silence 
+# Silence
 
 silence = blank(id="blank")
 
@@ -86,7 +86,7 @@ jingles = rotate([
  playlist(reload=1,
         id='jingle',
         mode="pls_mode",
-        reload_mode='rounds',   
+        reload_mode='rounds',
         mime_type="audio/x-mpegurl",
         "/music/playlists/Jingles/play.m3u")
 ])
@@ -100,14 +100,14 @@ radio = switch([
     ({18h-23h}, Night),
     ({0h-6h}, Earlymorning),
     ({0m0s}, Default)
-    ]) 
+    ])
 
 # Effect
 
 # Stream name
 
 radio = rotate(weights = [1, 5],[ jingles, radio ])
-radio = add([radio, switch([({0m0s},jingles)])]) 
+radio = add([radio, switch([({0m0s},jingles)])])
 radio = nrj(normalize(radio))
 radio = crossfade(fade_out=3., fade_in=3., duration=5., radio)
 radio = fallback(track_sensitive=false, [ radio, silence])
@@ -116,7 +116,7 @@ radio = fallback(track_sensitive=false, [ radio, silence])
 # Fallback to Silence if Playlist dies for some reason
 
 stream_mountpoint = getenv("stream_mountpoint")
-    
+
 
 # Output
 
@@ -129,7 +129,7 @@ output.icecast(
     mount = getenv("STREAM_MOUNTPOINT"),
     password = getenv("ICECAST_SOURCE_PASSWORD"),
     host = "icecast",
-    port = 8000,
+    port = 8808,
     icy_metadata="true",
     encoding = "UTF-8",
     radio
@@ -143,7 +143,7 @@ output.icecast(
     mount = "station-medium.mp3",
     password = getenv("ICECAST_SOURCE_PASSWORD"),
     host = "icecast",
-    port = 8000,
+    port = 8808,
     icy_metadata="true",
     encoding = "UTF-8",
     radio
@@ -158,7 +158,7 @@ output.icecast(
     password = getenv("ICECAST_SOURCE_PASSWORD"),
     host = "icecast",
     icy_metadata="true",
-    port = 8000,
+    port = 8808,
     encoding = "UTF-8",
     radio
 )

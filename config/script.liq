@@ -65,7 +65,7 @@ Evening = playlist(reload=3600,
 "/music/playlists/Evening/play.m3u")
 
 
-Earlymorning = playlist(reload=3600, 
+Earlymorning = playlist(reload=3600,
         id='playlist',
         mode="pls_mode",
         reload_mode='watch',
@@ -73,7 +73,7 @@ Earlymorning = playlist(reload=3600,
 "/music/playlists/Earlymorning/play.m3u")
 
 
-Night = playlist(reload=3600, 
+Night = playlist(reload=3600,
        id='playlist',
         mode="pls_mode",
         reload_mode='watch',
@@ -89,9 +89,9 @@ s = rewrite_metadata([("title","$(title)"),
 
 s = audio_process(s)
 
-output.icecast(%vorbis(quality=0.9, samplerate=44100, channels=2), 
+output.icecast(%vorbis(quality=0.9, samplerate=44100, channels=2),
 	host="icecast",
-	port=8000,
+	port=8808,
 	mount='radio.ogg',
 	genre='Radio',
 #	restart="true",
@@ -99,5 +99,5 @@ output.icecast(%vorbis(quality=0.9, samplerate=44100, channels=2),
 	url="http://localhost",
 	description="Radio",
 	timeout=1200.,
-	s	
+	s
 )
